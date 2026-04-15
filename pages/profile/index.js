@@ -1,5 +1,4 @@
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
-const HOST = wx.getExtConfigSync().host
 
 Page({
   data: {
@@ -8,11 +7,13 @@ Page({
   },
   onLoad(query) {
     console.debug('profile query:', query)
+    this.setData({
+      url: decodeURIComponent(query.url)
+    })
     wx.request({
-      url: HOST + '/auth/board/user',
+      url: this.data.url,
       header: {
-        Accept: 'application/json',
-        Authorization: wx.getStorageSync('authToken')
+        Accept: 'application/json'
       },
       success: res => {
         this.setData({
@@ -29,12 +30,12 @@ Page({
   onChooseAvatar(e) {
     this.setData({ avatarUrl: e.detail.avatarUrl })
     wx.uploadFile({
-      url: HOST + '/auth/board/user',
+      url: this.data.url,
+      method: 'PATCH',
       filePath: e.detail.avatarUrl,
       name: 'user[avatar]',
       header: {
-        Accept: 'application/json',
-        Authorization: wx.getStorageSync('authToken')
+        Accept: 'application/json'
       }
     })
   },
@@ -56,11 +57,10 @@ Page({
     console.debug('formSubmit:', e)
     if (e.detail.value) {
       wx.request({
-        url: HOST + '/auth/board/user',
-        method: 'POST',
+        url: this.data.url,
+        method: 'PATCH',
         header: {
           Accept: 'application/json',
-          Authorization: wx.getStorageSync('authToken')
         },
         data: {
           user: e.detail.value
