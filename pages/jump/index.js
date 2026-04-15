@@ -11,13 +11,10 @@ Page({
       appId: 'wxe44dc002dd0d29b0',
       path: '/pages/share/index',
       extraData: this.data.query,
-      fail: (res) => {
-        wx.showModal({
-          title: `Open Embedded Fail fail`,
-          content: JSON.stringify(res)
-        })
+      fail: () => {
+        wx.navigateBack()
       },
-      success: (res) => {
+      success: () => {
         wx.navigateBack()
       }
     })

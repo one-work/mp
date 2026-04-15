@@ -1,5 +1,6 @@
 button {
   margin-top: 1rem;
+  font-size: 1em;
 }
 
 .container {
