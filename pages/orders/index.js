@@ -1,4 +1,4 @@
-const WEBVIEW_HOST = 'https://zl.one.work'
+const WEBVIEW_HOST = wx.getExtConfigSync().webview_host
 const PATH = 'trade/my/orders'
 
 Page({
