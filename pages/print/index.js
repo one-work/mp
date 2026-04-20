@@ -14,7 +14,7 @@ Page({
     this.printer = new plugin.BluetoothPrinter(wx, this)
     this.printer.registeredDevices = devices
     this.printer.getState({
-      success: (res) => {
+      success: res => {
         console.debug('print state', res)
         this.setData({
           state: '打印机已连接，即将打印'
@@ -24,24 +24,6 @@ Page({
       complete: res => {
         this.setData({
           devices: res
-        })
-      },
-      fail: res => {
-        wx.getSetting({
-          success: settingRes => {
-            wx.request({
-              url: HOST + '/bluetooth/devices/err',
-              method: 'POST',
-              header: {
-                Accept: 'application/json'
-              },
-              data: {
-                api: 'openBluetoothAdapter',
-                message: res,
-                set: settingRes
-              }
-            })
-          }
         })
       }
     })
