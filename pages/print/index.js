@@ -11,7 +11,7 @@ Page({
     const devices = [options.device]
     this.setData({ registeredDevices: devices })
 
-    this.printer = new plugin.BluetoothPrinter(wx)
+    this.printer = new plugin.BluetoothPrinter(wx, this)
     this.printer.registeredDevices = devices
     this.printer.getState({
       success: (res) => {
