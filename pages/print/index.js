@@ -7,7 +7,7 @@ Page({
 
   onLoad(options) {
     console.debug('print onload', options)
-    const url = decodeURIComponent(options.url)
+    //const url = decodeURIComponent(options.url)
     const devices = [options.device]
     this.setData({ registeredDevices: devices })
 
@@ -19,7 +19,9 @@ Page({
         this.setData({
           state: '打印机已连接，即将打印'
         })
-        this.doPrint(url)
+        const data = atob(options.raw)
+        console.debug('打印数据', data)
+        this.printer.writeValue(data)
       },
       complete: res => {
         this.setData({
