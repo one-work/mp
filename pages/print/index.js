@@ -8,6 +8,9 @@ Page({
   onLoad(options) {
     console.debug('print onload', options)
     //const url = decodeURIComponent(options.url)
+    const raw = decodeURIComponent(options.raw)
+    const data = Uint8Array.fromBase64(raw)
+    console.debug('打印数据', data)
     const devices = [options.device]
     this.setData({ registeredDevices: devices })
 
@@ -19,8 +22,6 @@ Page({
         this.setData({
           state: '打印机已连接，即将打印'
         })
-        const data = atob(options.raw)
-        console.debug('打印数据', data)
         this.printer.writeValue(data)
       },
       complete: res => {
