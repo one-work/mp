@@ -23,6 +23,7 @@ Page({
           state: '打印机已连接，即将打印'
         })
         this.printer.writeValue(data)
+        wx.navigateBack()
       },
       complete: res => {
         this.setData({
