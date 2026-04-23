@@ -2,14 +2,10 @@
   padding: 1rem;
 }
 
-.list {
-  height: 200px;
-}
-
-.item {
-  padding: 5px 10px;
+#printers {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  height: 20em;
 }
 
 .text-centered {
