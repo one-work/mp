@@ -7,6 +7,7 @@
 
 <printers
   id="printers"
+  deviceName="{{registeredDevices.join(',')}}"
   bind:selected="selected"
   bind:unselected="unselected"
 ></printers>
