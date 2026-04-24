@@ -18,12 +18,13 @@ Page({
     this.printer.registeredDevices = devices
     this.printer.getState({
       success: res => {
-        console.debug('print state', res)
-        this.setData({
-          state: '打印机已连接，即将打印'
-        })
-        this.printer.writeValue(data)
-        wx.navigateBack()
+        if (res.printable) {
+          this.setData({
+            state: '打印机已连接，即将打印'
+          })
+          this.printer.writeValue(data)
+          wx.navigateBack()
+        }
       },
       complete: res => {
         this.setData({
