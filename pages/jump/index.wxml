@@ -1,8 +1,8 @@
 <view class="container">
   <view wx:if="{{ debug }}" class="text-centered mt-1 mx-3">
     <view>认证信息</view>
-    <view wx:for="{{ extraArray }}" class="text">
-      {{ item[0] }}: {{ item[1] }}
+    <view wx:for="{{ extraArray }}" wx:key="key" class="text">
+      {{ item.key }}: {{ item.value }}
     </view>
   </view>
   <view class="center">

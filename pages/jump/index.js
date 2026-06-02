@@ -13,8 +13,14 @@ Page({
     if (debug) {
       this.setData({ debug: debug })
     }
-
-    const extraArray = Object.entries(extra)
+    
+    let extraArray = []
+    Object.entries(extra).forEach(([key, value]) => {
+      extraArray.push({
+        key: key, 
+        value: decodeURIComponent(value)
+      })
+    })
     this.setData({
       appId: appId,
       extra: extra,
