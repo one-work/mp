@@ -13,7 +13,7 @@ Page({
     if (debug) {
       this.setData({ debug: debug })
     }
-    
+
     let extraArray = []
     Object.entries(extra).forEach(([key, value]) => {
       extraArray.push({
