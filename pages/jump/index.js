@@ -11,7 +11,7 @@ Page({
       this.setData({ title: decodeURIComponent(title) })
     }
     if (extra.debug) {
-      this.setData({ debug: debug })
+      this.setData({ debug: extra.debug })
     }
 
     let extraArray = []
