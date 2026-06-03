@@ -5,10 +5,10 @@ Page({
 
   onLoad(query) {
     console.debug('Share Onload:', query)
-    const { appId, title, ...extra } = query
+    const { appId, ...extra } = query
 
-    if (title) {
-      this.setData({ title: decodeURIComponent(title) })
+    if (extra.title) {
+      this.setData({ title: decodeURIComponent(extra.title) })
     }
     if (extra.debug) {
       this.setData({ debug: extra.debug })
