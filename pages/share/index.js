@@ -5,9 +5,12 @@ Page({
   onLoad(query) {
     console.debug('Share Onload:', query)
     const launchOptions = wx.getLaunchOptionsSync()
-    let options = query
+    const enterOptions = wx.getEnterOptionsSync()
+    let options = {}
     if (launchOptions.scene === 1037) {
-      options = launchOptions.referrerInfo.extraData
+      Object.assign(options, launchOptions.referrerInfo.extraData)
+    } else if (enterOptions.scene === 1037) {
+      Object.assign(options, enterOptions.referrerInfo.extraData)
     }
 
     this.setData({
