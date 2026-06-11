@@ -21,6 +21,13 @@ Page({
       },
       success: res => {
         wx.navigateBack()
+      },
+      fail: res => {
+        let content = JSON.stringify(res)
+        wx.showModal({
+          title: `授权手机号失败！`,
+          content: content
+        })
       }
     })
   }
