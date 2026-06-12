@@ -1,5 +1,6 @@
 <view class="container">
   <button
     bind:tap="handleSubscribe"
+    data-tmp-id="{{tmpId}}"
   >订阅通知</button>
 </view>

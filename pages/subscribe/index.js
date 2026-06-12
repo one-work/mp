@@ -4,10 +4,12 @@ Page({
       tmpId: query.tmpId
     })
   },
+
   handleSubscribe(e) {
     console.log(e)
+    const ds = e.currentTarget.dataset
     wx.requestSubscribeMessage({
-      tmplIds: ['NZK_QrLklioL-0Pcd3pvf8q1_p9EPGzd6jFE7XWWGAw'],
+      tmplIds: [ds.tmpId],
       success(res) {
         console.log(res)
       },
