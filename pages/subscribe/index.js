@@ -1,6 +1,8 @@
 Page({
-  data: {
-
+  onLoad(query) {
+    this.setData({
+      tmpId: query.tmpId
+    })
   },
   handleSubscribe(e) {
     console.log(e)

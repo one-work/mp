@@ -1,5 +1,5 @@
 <view class="container">
   <view class="center">
-    <button bindtap="openEmbedded">分享</button>
+    <button bind:tap="openEmbedded">分享</button>
   </view>
 </view>

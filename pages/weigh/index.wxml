@@ -5,7 +5,7 @@
     wx:key="index"
     data-device-id="{{item.deviceId}}"
     data-name="{{item.name || item.localName}}"
-    bindtap="{{connectedDeviceId === item.deviceId ? 'closeBLEConnection' : 'createBLEConnection'}}"
+    bind:tap="{{connectedDeviceId === item.deviceId ? 'closeBLEConnection' : 'createBLEConnection'}}"
     class="device_item"
     hover-class="device_item_hover"
   >
@@ -32,7 +32,7 @@
 </scroll-view>
 
 <button
-  bindtap="restartBluetoothDevicesDiscovery"
+  bind:tap="restartBluetoothDevicesDiscovery"
   class="weui-btn weui-btn_primary"
 >查找蓝牙设备</button>
 
@@ -48,7 +48,7 @@
     </view>
     <view>
       <button
-        bindtap="doWeigh"
+        bind:tap="doWeigh"
         class="weui-btn weui-btn_primary"
         disabled="{{!value}}"
       >发送</button>

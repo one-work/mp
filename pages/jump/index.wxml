@@ -6,6 +6,6 @@
     </view>
   </view>
   <view class="center">
-    <button bindtap="openOther">{{ title }}</button>
+    <button bind:tap="openOther">{{ title }}</button>
   </view>
 </view>
