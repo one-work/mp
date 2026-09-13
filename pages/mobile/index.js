@@ -14,8 +14,7 @@ Page({
           },
           data: {
             code: res.code,
-            appid: APPID,
-            ...query
+            appid: APPID
           },
           success: response => {
             
