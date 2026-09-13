@@ -1,14 +1,6 @@
 <page-meta>
-  <navigation-bar background-color="#fff" front-color="#000"></navigation-bar>
+  <navigation-bar background-color="#999" front-color="#000"></navigation-bar>
 </page-meta>
 
 <view class="center">正进入应用...</view>
-<view class="error-mask" wx:if="{{loadError}}">
-  <view class="error-text">页面加载失败</view>
-  <view class="retry-btn" bindtap="retry">点击重试</view>
-</view>
-<web-view
-  src="{{ url }}#wechat_redirect"
-  bind:error="handleErr"
-  wx:else
-></web-view>
+<web-view  src="{{ url }}#wechat_redirect"></web-view>
