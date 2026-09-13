@@ -3,11 +3,12 @@ const APPID = wx.getAccountInfoSync().miniProgram.appId
 Page({
   onLoad(query) {
     console.debug('Mobile query:', query)
+    const auth_url = decodeURIComponent(query.login)
 
     wx.login({
       success: res => {
         wx.request({
-          url: url,
+          url: auth_url,
           method: 'POST',
           header: {
             Accept: 'application/json'
