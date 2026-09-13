@@ -51,6 +51,7 @@ Page({
   },
 
   handleErr(e) {
+    console.debug('handlerr', e)
     this.setData({ loadError: true })
   },
 
