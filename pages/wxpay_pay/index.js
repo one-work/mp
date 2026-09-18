@@ -41,16 +41,18 @@ Page({
         } else {
           wx.showModal({
             title: 'status code fails',
-            content: JSON.stringify(res.data)
-          })
-          wx.setStorageSync('url', decodeURIComponent(query.path_fail))
-          wx.navigateBack({
-            fail: res => {
-              wx.removeStorageSync('url')
-              console.debug('navigate back fail', res)
-            },
+            content: JSON.stringify(res.data),
             success: res => {
-              console.debug('navigate back success', res)
+              wx.setStorageSync('url', decodeURIComponent(query.path_fail))
+              wx.navigateBack({
+                fail: navFail => {
+                  wx.removeStorageSync('url')
+                  console.debug('navigate back fail', navFail)
+                },
+                success: navSucc => {
+                  console.debug('navigate back success', navSucc)
+                }
+              })
             }
           })
         }
