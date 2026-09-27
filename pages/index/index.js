@@ -2,6 +2,11 @@ const WEBVIEW_HOST = wx.getExtConfigSync().webview_host
 const PATH = wx.getExtConfigSync().path
 
 Page({
+  data: {
+    backgroundColor: '#eee',
+    frontColor: '#000'
+  },
+
   onLoad(query) {
     console.debug('index onLoad:', query)
     let url
