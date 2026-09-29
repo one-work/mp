@@ -1,9 +1,11 @@
 const WEBVIEW_HOST = wx.getExtConfigSync().webview_host
 const PATH = wx.getExtConfigSync().path
+const HOST = wx.getExtConfigSync().host
+const appid = wx.getAccountInfoSync().miniProgram.appId
 
 Page({
   data: {
-    backgroundColor: '#eee',
+    backgroundColor: '#fff',
     frontColor: '#000'
   },
 
@@ -53,6 +55,20 @@ Page({
         url: url
       })
     }
+  },
+
+  onReady() {
+    wx.request({
+      url: HOST + `/wechat/apps/${appid}/configs`,
+      success: (res) => {
+        if (res.data.backgroundColor && res.data.frontColor) {
+          this.setData({
+            backgroundColor: res.data.backgroundColor,
+            frontColor: res.data.frontColor
+          })
+        }
+      }
+    })
   },
 
   handleErr(e) {
