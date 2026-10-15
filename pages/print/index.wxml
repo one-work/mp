@@ -9,8 +9,9 @@
   id="printers"
   deviceName="{{registeredDevices.join(',')}}"
   bind:ready="printerReady"
-  bind:selected="selected"
-  bind:unselected="unselected"
+  bind:connected="printerConnected"
+  bind:selected="printerSelected"
+  bind:unselected="printerUnselected"
 ></printers>
 
 <view class="box text-centered">

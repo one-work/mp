@@ -35,19 +35,25 @@ Page({
     if (this.raw) {
       this.doPrint(this.raw)
     }
+    this.setData({
+      state: '打印机连接中！'
+    })
   },
 
-  selected(e) {
-    this.printer.registeredDevices = [e.detail.deviceName]
-    if (this.raw) {
-      this.doPrint(this.raw)
-    }
+  printerConnected(e) {
     this.setData({
       state: '打印机已连接！'
     })
   },
 
-  unselected(e) {
+  printerSelected(e) {
+    this.printer.registeredDevices = [e.detail.deviceName]
+    if (this.raw) {
+      this.doPrint(this.raw)
+    }
+  },
+
+  printerUnselected(e) {
     this.setData({
       state: '打印机已断开连接！'
     })
