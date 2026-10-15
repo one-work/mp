@@ -8,30 +8,55 @@ Page({
   onLoad(options) {
     console.debug('print onload', options)
     //const url = decodeURIComponent(options.url)
-    const raw = decodeURIComponent(options.raw)
-    const data = Uint8Array.fromBase64(raw)
-    console.debug('打印数据', data)
+    
     const devices = [options.device]
     this.setData({ registeredDevices: devices })
 
     this.printer = new plugin.BluetoothPrinter(wx, this)
     this.printer.registeredDevices = devices
-    this.printer.getState({
-      success: res => {
-        if (res.printable) {
+
+    const raw = decodeURIComponent(options.raw)
+    if (raw) {
+      const data = Uint8Array.fromBase64(raw)
+      console.debug('打印数据', data)
+      this.printer.getState({
+        success: res => {
+          if (res.printable) {
+            this.setData({
+              state: '打印机已连接，即将打印'
+            })
+            this.printer.writeValue(data)
+            wx.navigateBack()
+          }
+        },
+        complete: res => {
           this.setData({
-            state: '打印机已连接，即将打印'
+            devices: res
           })
-          this.printer.writeValue(data)
-          wx.navigateBack()
         }
-      },
-      complete: res => {
-        this.setData({
-          devices: res
-        })
-      }
+      })
+    }
+  },
+
+  selected(e) {
+    this.setData({
+      connectedId: e.detail.deviceId,
+      connectedName: e.detail.deviceName
     })
+    console.debug(e)
+    const app = getApp()
+    app.globalData.connectedId = this.data.connectedId
+    app.globalData.connectedName = this.data.connectedName
+  },
+
+  unselected(e) {
+    this.setData({
+      connectedId: '',
+      connectedName: ''
+    })
+    const app = getApp()
+    app.globalData.connectedId = this.data.connectedId
+    app.globalData.connectedName = this.data.connectedName
   },
 
   doPrint(url) {
