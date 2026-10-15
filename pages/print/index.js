@@ -1,22 +1,25 @@
 const plugin = requirePlugin('bluetooth')
 
 Page({
-  data: {
-    state: '正在连接打印机...'
-  },
-
   onLoad(options) {
     console.debug('print onload', options)
     this.printer = new plugin.BluetoothPrinter(wx, this)
 
     if (options.url) {
       this.url = decodeURIComponent(options.url)
-    } 
+    }
 
     if (options.device) {
       const devices = [options.device]
-      this.setData({ registeredDevices: devices })
+      this.setData({ 
+        registeredDevices: devices,
+        state: '正在连接打印机...'
+      })
       this.printer.registeredDevices = devices
+    } else {
+      this.setData({
+        state: '等待选择并连接打印机...'
+      })
     }
 
     if (options.raw) {
