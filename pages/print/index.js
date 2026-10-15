@@ -15,7 +15,9 @@ Page({
     this.printer = new plugin.BluetoothPrinter(wx, this)
     this.printer.registeredDevices = devices
 
-    this.raw = decodeURIComponent(options.raw)
+    if (options.raw) {
+      this.raw = decodeURIComponent(options.raw)
+    }
     if (this.raw) {
       const data = Uint8Array.fromBase64(this.raw)
       console.debug('打印数据', data)
@@ -44,9 +46,6 @@ Page({
       connectedName: e.detail.deviceName
     })
     console.debug(e)
-    const app = getApp()
-    app.globalData.connectedId = this.data.connectedId
-    app.globalData.connectedName = this.data.connectedName
   },
 
   unselected(e) {
@@ -54,9 +53,6 @@ Page({
       connectedId: '',
       connectedName: ''
     })
-    const app = getApp()
-    app.globalData.connectedId = this.data.connectedId
-    app.globalData.connectedName = this.data.connectedName
   },
 
   setPrinter(url) {
