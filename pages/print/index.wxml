@@ -1,4 +1,4 @@
-<view class="box">
+<view wx:if="{{registeredDevices.length > 0}}" class="box">
   <text>绑定设备为：</text>
   <view wx:for="{{registeredDevices}}" wx:key="index" class="box">
     <text>{{item}}</text>

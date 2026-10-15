@@ -7,10 +7,15 @@ Page({
 
   onLoad(options) {
     console.debug('print onload', options)
-    //const url = decodeURIComponent(options.url)
 
-    const devices = [options.device]
-    this.setData({ registeredDevices: devices })
+    if (options.url) {
+      this.url = decodeURIComponent(options.url)
+    } 
+
+    if (options.device) {
+      const devices = [options.device]
+      this.setData({ registeredDevices: devices })
+    }
 
     this.printer = new plugin.BluetoothPrinter(wx, this)
     this.printer.registeredDevices = devices
@@ -25,13 +30,16 @@ Page({
 
   printerReady(e) {
     this.printer.registeredDevices = [e.detail.connectedName]
-    this.doPrint(this.raw)
+    if (this.raw) {
+      this.doPrint(this.raw)
+    }
   },
 
   selected(e) {
-    console.log(this.raw)
     this.printer.registeredDevices = [e.detail.deviceName]
-    this.doPrint(this.raw)
+    if (this.raw) {
+      this.doPrint(this.raw)
+    }
   },
 
   unselected(e) {
@@ -62,9 +70,8 @@ Page({
   },
 
   setPrinter(url) {
-    console.debug('print url', url)
     wx.request({
-      url: url,
+      url: this.url,
       header: {
         Accept: 'application/json'
       },
