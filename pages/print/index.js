@@ -7,6 +7,7 @@ Page({
 
   onLoad(options) {
     console.debug('print onload', options)
+    this.printer = new plugin.BluetoothPrinter(wx, this)
 
     if (options.url) {
       this.url = decodeURIComponent(options.url)
@@ -15,10 +16,8 @@ Page({
     if (options.device) {
       const devices = [options.device]
       this.setData({ registeredDevices: devices })
+      this.printer.registeredDevices = devices
     }
-
-    this.printer = new plugin.BluetoothPrinter(wx, this)
-    this.printer.registeredDevices = devices
 
     if (options.raw) {
       this.raw = decodeURIComponent(options.raw)
