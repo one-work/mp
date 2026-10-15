@@ -24,7 +24,6 @@ Page({
   },
 
   printerReady(e) {
-    console.log(e)
     this.printer.registeredDevices = [e.detail.connectedName]
     this.doPrint(this.raw)
   },
@@ -36,6 +35,9 @@ Page({
   },
 
   unselected(e) {
+    this.setData({
+      state: '打印机已断开连接！'
+    })
   },
 
   doPrint(raw) {
