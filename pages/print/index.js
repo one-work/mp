@@ -19,39 +19,37 @@ Page({
       this.raw = decodeURIComponent(options.raw)
     }
     if (this.raw) {
-      const data = Uint8Array.fromBase64(this.raw)
-      console.debug('打印数据', data)
-      this.printer.getState({
-        success: res => {
-          if (res.printable) {
-            this.setData({
-              state: '打印机已连接，即将打印'
-            })
-            this.printer.writeValue(data)
-            wx.navigateBack()
-          }
-        },
-        complete: res => {
-          this.setData({
-            devices: res
-          })
-        }
-      })
+      this.doPrint(this.raw)
     }
   },
 
   selected(e) {
-    this.setData({
-      connectedId: e.detail.deviceId,
-      connectedName: e.detail.deviceName
-    })
-    console.debug(e)
+    console.log(this.raw)
+    this.printer.registeredDevices = [e.detail.deviceName]
+    this.doPrint(this.raw)
   },
 
   unselected(e) {
-    this.setData({
-      connectedId: '',
-      connectedName: ''
+  },
+
+  doPrint(raw) {
+    const data = Uint8Array.fromBase64(raw)
+    console.debug('打印数据', data)
+    this.printer.getState({
+      success: res => {
+        if (res.printable) {
+          this.setData({
+            state: '打印机已连接，即将打印'
+          })
+          this.printer.writeValue(data)
+          wx.navigateBack()
+        }
+      },
+      complete: res => {
+        this.setData({
+          devices: res
+        })
+      }
     })
   },
 
