@@ -23,6 +23,12 @@ Page({
     }
   },
 
+  printerReady(e) {
+    console.log(e)
+    this.printer.registeredDevices = [e.detail.connectedName]
+    this.doPrint(this.raw)
+  },
+
   selected(e) {
     console.log(this.raw)
     this.printer.registeredDevices = [e.detail.deviceName]
