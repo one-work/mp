@@ -15,9 +15,9 @@ Page({
     this.printer = new plugin.BluetoothPrinter(wx, this)
     this.printer.registeredDevices = devices
 
-    const raw = decodeURIComponent(options.raw)
-    if (raw) {
-      const data = Uint8Array.fromBase64(raw)
+    this.raw = decodeURIComponent(options.raw)
+    if (this.raw) {
+      const data = Uint8Array.fromBase64(this.raw)
       console.debug('打印数据', data)
       this.printer.getState({
         success: res => {
