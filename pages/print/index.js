@@ -8,7 +8,7 @@ Page({
   onLoad(options) {
     console.debug('print onload', options)
     //const url = decodeURIComponent(options.url)
-    
+
     const devices = [options.device]
     this.setData({ registeredDevices: devices })
 
@@ -59,7 +59,7 @@ Page({
     app.globalData.connectedName = this.data.connectedName
   },
 
-  doPrint(url) {
+  setPrinter(url) {
     console.debug('print url', url)
     wx.request({
       url: url,
@@ -67,14 +67,6 @@ Page({
         Accept: 'application/json'
       },
       success: res => {
-        if (Array.isArray(res.data[0])) {
-          res.data.forEach(data => {
-            this.printer.writeValue(data)
-          })
-        } else {
-          this.printer.writeValue(res.data)
-        }
-        wx.navigateBack()
       },
       fail: res => {
         wx.showModal({
