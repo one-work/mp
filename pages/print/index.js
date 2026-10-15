@@ -42,6 +42,9 @@ Page({
     if (this.raw) {
       this.doPrint(this.raw)
     }
+    this.setData({
+      state: '打印机已连接！'
+    })
   },
 
   unselected(e) {
