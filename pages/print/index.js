@@ -67,11 +67,14 @@ Page({
     })
   },
 
-  setPrinter(url) {
+  setPrinter(deviceName) {
     wx.request({
       url: this.url,
       header: {
         Accept: 'application/json'
+      },
+      data: {
+        name: deviceName
       },
       success: res => {
       },
