@@ -8,9 +8,7 @@
 <printers
   id="printers"
   deviceName="{{registeredDevices.join(',')}}"
-  bind:ready="printerReady"
   bind:connected="printerConnected"
-  bind:selected="printerSelected"
   bind:unselected="printerUnselected"
 ></printers>
 

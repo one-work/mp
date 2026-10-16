@@ -30,27 +30,14 @@ Page({
     }
   },
 
-  printerReady(e) {
-    this.printer.registeredDevices = [e.detail.connectedName]
-    if (this.raw) {
-      this.doPrint(this.raw)
-    }
-    this.setData({
-      state: '打印机连接中！'
-    })
-  },
-
   printerConnected(e) {
-    this.setData({
-      state: '打印机已连接！'
-    })
-  },
-
-  printerSelected(e) {
     this.printer.registeredDevices = [e.detail.deviceName]
     if (this.raw) {
       this.doPrint(this.raw)
     }
+    this.setData({
+      state: '打印机已连接！'
+    })
   },
 
   printerUnselected(e) {
