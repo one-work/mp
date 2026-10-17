@@ -73,11 +73,14 @@ Page({
   setPrinter(deviceName) {
     wx.request({
       url: this.url,
+      method: 'POST',
       header: {
         Accept: 'application/json'
       },
       data: {
-        name: deviceName
+        bluetooth_printer: {
+          name: deviceName
+        }
       },
       success: res => {
       },

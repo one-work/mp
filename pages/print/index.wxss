@@ -5,7 +5,7 @@
 #printers {
   display: flex;
   flex-direction: column;
-  height: 40em;
+  height: 30em;
 }
 
 .text-centered {
