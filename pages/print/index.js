@@ -35,7 +35,9 @@ Page({
     if (this.raw) {
       this.doPrint(this.raw)
     }
-    this.setPrinter(e.detail.deviceName)
+    if (this.url) {
+      this.setPrinter(e.detail.deviceName)
+    }
     this.setData({
       state: '打印机已连接！'
     })
