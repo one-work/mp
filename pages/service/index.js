@@ -2,7 +2,8 @@ Page({
   onLoad(options) { 
     if (options.service_url) {
       this.setData({
-        service_url: options.service_url
+        service_url: options.service_url,
+        service_corp: options.service_corp
       })
     }
   },
