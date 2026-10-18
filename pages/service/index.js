@@ -1,17 +1,10 @@
-const HOST = wx.getExtConfigSync().host
-const appid = wx.getAccountInfoSync().miniProgram.appId
-
 Page({
-  onLoad() {
-    wx.request({
-      url: HOST + `/wechat/apps/${appid}/configs`,
-      success: (res) => {
-        this.setData(res.data)
-      },
-      complete: (res) => {
-        console.debug(res)
-      }
-    })
+  onLoad(options) { 
+    if (options.service_url) {
+      this.setData({
+        service_url: options.service_url
+      })
+    }
   },
 
   handleContact(e) {
