@@ -28,6 +28,13 @@ Page({
     if (this.raw) {
       this.doPrint(this.raw)
     }
+
+    wx.onNeedPrivacyAuthorization((resolve, eventInfo) => {
+      this.setData({
+        showPrivacy: true
+      })
+      this.resolvePrivacyAuthorization = resolve
+    })
   },
 
   printerConnected(e) {
