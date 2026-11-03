@@ -2,5 +2,6 @@
   feed-token="{{feed_token}}"
   autoplay="true"
   loop="true"
+  object-fit="contain"
 >
 </channel-video>
