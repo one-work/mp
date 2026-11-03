@@ -3,6 +3,7 @@
   "pages": [
     "pages/index/index",
     "pages/addresses/index",
+    "pages/channels/index",
     "pages/download_image/index",
     "pages/embed/index",
     "pages/jump/index",

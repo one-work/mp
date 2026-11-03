@@ -1,0 +1,6 @@
+<channel-video
+  feed-token="{{feed_token}}"
+  autoplay="true"
+  loop="true"
+>
+</channel-video>
